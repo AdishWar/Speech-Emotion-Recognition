@@ -18,74 +18,88 @@ h1.header {
 }
 
 .recorder {
-    background-color: #aaaaaa;
+    /* background-color: #AAAAAA; */
+    background-color: #FFFFFF;
     align-self: center;
     width: 90%;
-    height: 150px;
+    height: 260px;
     margin: auto;
+    margin-top: 20px;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: 3px 5px 10px 0px rgba(0,0,0,0.3);
 }
 
 .play-button-parent-div {
     margin: auto;
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 150px;
 }
 
 .play-button {
-    padding: 5px 8px;
-    outline: none;
-    padding: 0px;
-    margin: auto;
+    background-color: rgb(228, 25, 25);
+    color: white;
+    margin: 10px;
+    height: 55px;
+    width: 55px;
+    font-size: 30px;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.1s;
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    font-size: 40px;
 }
 
 .play-button:hover {
     transform: scale(1.05, 1.05);
+    box-shadow: 3px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-.play-button-img {
-    height: 100px;
+.audio-player-div {
+    margin: auto;
+    width: 500px;
+}
+
+.audio-player {
+    width: 500px;
 }
 
 .bottom-part {
-    background-color: #aaaaaa;
-    width: 90%;
+    /* background-color: #AAAAAA; */
+    width: 91.5%;
     height: 400px;
     padding: 10px;
     margin: auto;
     margin-top: 10px;
     border-radius: 5px;
+    /* background-color: #FFFFFF; */
+    /* box-shadow: 3px 5px 10px 0px rgba(0, 0, 0, 0.3); */
 }
 
 .emotion-panel {
-    background-color: #999999;
+    /* background-color: #999999; */
     height: 100%;
     width: 38%;
     float: left;
     border-radius: 5px;
     padding: 10px 0px 10px 0px;
+    background-color: #FFFFFF;
+    box-shadow: 3px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .output-panel {
-    background-color: #999999;
+    /* background-color: #999999; */
     height: 100%;
     width: 58%;
     float: right;
     border-radius: 5px;
     text-align: center;
     padding: 100px;
+    background-color: #FFFFFF;
+    box-shadow: 3px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .emotion-card {
     text-align: center;
-    background-color: #777777;
+    /* background-color: #777777; */
     height: 50px;
     width: 90%;
     margin: 10px auto 5px auto;
@@ -95,6 +109,10 @@ h1.header {
 }
 
 .emotion-card:hover {
-    background-color: #666666;
-    transform: scale(1.05, 1);
+    /* background-color: #666666; */
+    
+    background-color: #f1f1f1;
+    transform: scale(1.05, 1.05);
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
 }
+
