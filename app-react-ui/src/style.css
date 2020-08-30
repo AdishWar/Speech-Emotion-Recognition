@@ -10,11 +10,15 @@ body{
     background-color: #d2dbdd;
 }
 
+h1 {
+	font-weight: 400;
+}
+
 h1.header {
     text-align: center;
     color: #666;
     margin: 20px;
-    font-weight: 200;
+    font-weight: 500;
 }
 
 .recorder {

@@ -5,6 +5,8 @@ node_modules/
 /.pnp
 .pnp.js
 ffmpeg-20200821-412d63f-win64-static/
+.ipynb_checkpoints/
+models_in_testing/
 
 # testing
 /coverage
