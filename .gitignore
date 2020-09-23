@@ -7,6 +7,7 @@ node_modules/
 ffmpeg-20200821-412d63f-win64-static/
 .ipynb_checkpoints/
 models_in_testing/
+venv
 
 # testing
 /coverage
@@ -20,7 +21,7 @@ models_in_testing/
 .env.development.local
 .env.test.local
 .env.production.local
-
+__pycache__
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
