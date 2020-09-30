@@ -16,7 +16,7 @@ class Recorder extends React.Component {
     
       start = () => {
         if (this.state.isBlocked) {
-          console.log('Permission Denied');
+          alert('Permission Denied');
         } else {
           Mp3Recorder
             .start()
@@ -54,12 +54,15 @@ class Recorder extends React.Component {
             <div className='recorder'>
                 <h1 className='header'>Speech Emotion Recognition</h1>
                 <div className='play-button-parent-div'>
-                    <button className='play-button' disabled={this.state.isRecording} onClick={this.start}>
-                        <i className='play-button-img' className="fa fa-microphone"></i>
-                    </button>
-                    <button className='play-button' disabled={!this.state.isRecording} onClick={this.stop}>
-                        <i className='play-button-img' className="fa fa-stop"></i>
-                    </button>
+					
+					<button className="play-button" onClick={(this.state.isRecording) ? (this.stop) : (this.start) }>
+						{
+							(this.state.isRecording)?
+							(<i className='play-button-img' className="fa fa-stop"></i>):
+							(<i className='play-button-img' className="fa fa-microphone"></i>)
+						}
+					</button>
+
                 </div>
                 <div className='audio-player-div'>
                     <audio className='audio-player' src={this.state.blobURL} controls="controls" />

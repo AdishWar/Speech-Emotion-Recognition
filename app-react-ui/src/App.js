@@ -1,7 +1,8 @@
 import React from 'react';
 import Recorder from './Recorder';
 import EmotionPanel from './EmotionPanel';
-import OutputPanel from './OutputPanel';
+// import OutputPanel from './OutputPanel';
+import OutputPanelClass from './OutputPanelClass';
 
 function App() {
   return(
@@ -10,7 +11,7 @@ function App() {
 		<Recorder />
 		<div className='bottom-part'>
 			<EmotionPanel />
-			<OutputPanel />
+			<OutputPanelClass />
 		</div>
     </>
   );
