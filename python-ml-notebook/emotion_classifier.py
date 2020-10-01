@@ -4,7 +4,6 @@ import librosa
 import soundfile
 import os, glob
 import numpy as np
-import pickle
 
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
@@ -31,26 +30,6 @@ def extract_feature(file, mfcc, chroma, mel):
             result=np.hstack((result, mel))
         return result
 
-emotions={
-  '01':'neutral',
-  '02':'calm',
-  '03':'happy',
-  '04':'sad',
-  '05':'angry',
-  '06':'fearful',
-  '07':'disgust',
-  '08':'surprised'
-}
-
-# Emotions to observe
-observed_emotions = ['neutral','happy','angry','surprised']
-# observed_emotions = ['neutral','calm','happy','sad','angry','fearful','disgust','surprised']
-
-
-# Load the data and extract features for each sound file
-# wav_files = 'C:\\Users\\admin\\Downloads\\bdad-project\\speech-emotion-recognition-ravdess-data\\Actor_*\\*.wav'
-wav_files = 'C:\\Users\\admin\\Downloads\\bdad-project\\sample-ravdess\\Actor_*\\*.wav'
-
 def load_data(test_size=0.2):
     x,y=[],[]
     for file in glob.glob(wav_files):
@@ -63,28 +42,47 @@ def load_data(test_size=0.2):
         y.append(emotion)
     return train_test_split(np.array(x), y, test_size=test_size, random_state=9)
 
-# creating the model
-print('Loading the dataset...')
-x_train,x_test,y_train,y_test = load_data(test_size=0.25)
+if __name__ == '__main__':
+    emotions={
+        '01':'neutral',
+        '02':'calm',
+        '03':'happy',
+        '04':'sad',
+        '05':'angry',
+        '06':'fearful',
+        '07':'disgust',
+        '08':'surprised'
+    }
 
-print("Creating the model...")
-model= MLPClassifier(
-            alpha=0.01, 
-            batch_size=10, 
-            epsilon=1e-08, 
-            hidden_layer_sizes=(300,), 
-            learning_rate='adaptive', 
-            max_iter=500 )
+    # Emotions to observe
+    # observed_emotions = ['neutral','happy','angry','surprised']
+    observed_emotions = ['calm','sad','angry']
+    # observed_emotions = ['neutral','calm','happy','sad','angry','fearful','disgust','surprised']
 
-model.fit(x_train, y_train)
-print("Model score: ", model.score(x_test, y_test))
+    # Load the data and extract features for each sound file
+    wav_files = 'C:\\Users\\admin\\Downloads\\bdad-project\\speech-emotion-recognition-ravdess-data\\Actor_*\\*.wav'
+    # wav_files = 'C:\\Users\\admin\\Downloads\\bdad-project\\sample-ravdess\\Actor_*\\*.wav'
+    
+    # creating the model
+    print('Loading the dataset...')
+    x_train,x_test,y_train,y_test = load_data(test_size=0.25)
 
-# serialising the model object so we dont have to retrain it every time we run jupyter nb
-# with open('E:\\Speech Emotion Analysis\\python-ml-notebook\\models\\model_fulldata_all_51_84', 'wb') as file:
-#     pickle.dump(model, file)
-    # pickle.dump(model, model_pickle.pkl)
-dmp = "model.joblib"
-joblib.dump(model, dmp)
-print("Model dumped at: ", dmp)
+    print("Creating the model...")
+    model= MLPClassifier(
+                alpha=0.01, 
+                batch_size=10, 
+                epsilon=1e-08, 
+                hidden_layer_sizes=(300,), 
+                learning_rate='adaptive', 
+                max_iter=500 )
 
-print("DONE")
+    model.fit(x_train, y_train)
+    print("Model train score: ", model.score(x_train, y_train))
+    print("Model test score: ", model.score(x_test, y_test))
+
+    # serialising the model object so we dont have to retrain it every time we run jupyter nb
+    dmp = "model.joblib"
+    joblib.dump(model, dmp)
+    print("Model dumped at: ", dmp)
+
+    print("DONE")

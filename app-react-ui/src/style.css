@@ -42,18 +42,22 @@ h1.header {
 
 .play-button {
     background-color: rgb(228, 25, 25);
+    background-image: linear-gradient(rgb(228, 25, 25), rgb(189, 21, 21) );
     color: white;
     height: 55px;
     width: 55px;
     font-size: 30px;
+    display: inline-block;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     transition: all 0.1s;
 }
 
 .play-button:hover {
-    transform: scale(1.1, 1.1);
+    /* transform: scale(1.2, 1.2); */
     /* box-shadow: 3px 5px 10px 0px rgba(0, 0, 0, 0.3); */
+    background-image: linear-gradient(rgb(228, 25, 25), rgb(160, 17, 17) );
 }
 
 .audio-player-div {
@@ -119,9 +123,11 @@ h1.header {
 
 #fetch-button {
     border: none;
+    height: 60px;
+    width: 150px;
     color: white;
-    padding: 15px 32px;
     margin: 20px;
+    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -130,9 +136,9 @@ h1.header {
 }
 
 .button-ready {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
 }
 
 .button-fetching {
-    background-color: #f44336; /* pink */
+    background-color: #f44336;
 }

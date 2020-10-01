@@ -54,7 +54,6 @@ class Recorder extends React.Component {
             <div className='recorder'>
                 <h1 className='header'>Speech Emotion Recognition</h1>
                 <div className='play-button-parent-div'>
-					
 					<button className="play-button" onClick={(this.state.isRecording) ? (this.stop) : (this.start) }>
 						{
 							(this.state.isRecording)?
