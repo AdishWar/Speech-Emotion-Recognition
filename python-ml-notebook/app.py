@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from flask_restplus import Api, Resource
+# from flask_restplus import Api, Resource
 from sklearn.externals import joblib
 import glob, os
 import librosa
@@ -7,11 +7,15 @@ import soundfile
 import numpy as np
 from emotion_classifier import extract_feature
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../app-react-ui/build", static_url_path="/")
 # api = Api(app)
 # name_space = api.namespace("prediction", description="Prediction API")
 
-@app.route("/data")
+@app.route("/")
+def index():
+    return app.send_static_file('index.html')
+
+@app.route("/api/data")
 def ppp():
     print("Reading the model...")
     model = joblib.load("model.joblib")

@@ -3,15 +3,15 @@ import EmotionCard from './EmotionCard';
 import emotiondata from './EmotionData'
 
 // function now redundant
-function emo(data) {
-    return(
-        <EmotionCard 
-            key = {data.id}
-            emotion = {data.emotion}
-            probability = {data.probability}
-        />
-    );
-}
+// function emo(data) {
+//     return(
+//         <EmotionCard 
+//             key = {data.id}
+//             emotion = {data.emotion}
+//             probability = {data.probability}
+//         />
+//     );
+// }
 
 function EmotionPanel() {
     return(

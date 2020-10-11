@@ -10,10 +10,9 @@ export default class OutputPanelClass extends React.Component {
     // we have to use arrow functions if we want to reference "this" inside functions
     // using arrow functions binds the "this" variable to the current class
     buttonClick = (e) => {
-        this.setState({
-            fetching: true
-        })
-        fetch('http://127.0.0.1:5000/data')
+        this.setState({ fetching: true })
+
+        fetch('/api/data')
         .then(response => response.json())
         .then(response => {
             this.setState({

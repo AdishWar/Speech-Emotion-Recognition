@@ -8,7 +8,8 @@ class Recorder extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          isRecording: false,
+		  isRecording: false,
+		  blob:'',
           blobURL: '',
           isBlocked: false,
         };
@@ -24,15 +25,17 @@ class Recorder extends React.Component {
               this.setState({ isRecording: true });
             }).catch((e) => console.error(e));
         }
-      };
+	  };
     
       stop = () => {
         Mp3Recorder
           .stop()
           .getMp3()
           .then(([buffer, blob]) => {
-            const blobURL = URL.createObjectURL(blob)
-            this.setState({ blobURL, isRecording: false });
+			// console.log(await blob.text())
+			// console.log(reader.readAsArrayBuffer(blob))
+			const blobURL = URL.createObjectURL(blob)
+			this.setState({ blobURL, isRecording: false, blob:blob });
           }).catch((e) => console.log(e));
       };
     
@@ -53,6 +56,8 @@ class Recorder extends React.Component {
         return(
             <div className='recorder'>
                 <h1 className='header'>Speech Emotion Recognition</h1>
+				<p>{this.state.blobURL}</p>
+				{/* <p>{console.log(this.state.blob.prototype.type)}</p> */}
                 <div className='play-button-parent-div'>
 					<button className="play-button" onClick={(this.state.isRecording) ? (this.stop) : (this.start) }>
 						{
