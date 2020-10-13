@@ -3,6 +3,7 @@ import Recorder from './Recorder';
 import EmotionPanel from './EmotionPanel';
 // import OutputPanel from './OutputPanel';
 import OutputPanelClass from './OutputPanelClass';
+import SelectFilePanel from './SelectFilePanel';
 
 function App() {
   return(
@@ -10,7 +11,8 @@ function App() {
 		
 		<Recorder />
 		<div className='bottom-part'>
-			<EmotionPanel />
+			{/* <EmotionPanel /> */}
+			<SelectFilePanel />
 			<OutputPanelClass />
 		</div>
     </>

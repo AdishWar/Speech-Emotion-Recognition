@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-# from flask_restplus import Api, Resource
+from flask_restplus import Api, Resource
 from sklearn.externals import joblib
 import glob, os
 import librosa
