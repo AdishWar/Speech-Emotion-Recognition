@@ -15,6 +15,7 @@ def extract_feature(file, mfcc, chroma, mel):
     with soundfile.SoundFile(file) as file:
         X = file.read(dtype="float32")
         sample_rate=file.samplerate
+        # X, sample_rate = librosa.load(file)
         
         if chroma:
             stft=np.abs(librosa.stft(X))

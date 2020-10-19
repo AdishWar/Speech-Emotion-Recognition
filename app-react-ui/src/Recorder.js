@@ -1,5 +1,7 @@
 import React from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
+// import AudioRecorder from 'react-audio-recorder';
+import AudioRecorder from 'react-audio-recorder-wavdownloader';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -66,7 +68,11 @@ class Recorder extends React.Component {
 							(<i className='play-button-img' className="fa fa-microphone"></i>)
 						}
 					</button>
+          <AudioRecorder 
+            downloadable = 'true'
+            filename='output.wav'
 
+          />
                 </div>
                 <div className='audio-player-div'>
                     <audio className='audio-player' src={this.state.blobURL} controls="controls" />

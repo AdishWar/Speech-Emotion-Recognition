@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "mic-recorder-to-mp3": "^2.2.2",
     "react": "^16.13.1",
+    "react-audio-recorder-wavdownloader": "^2.0.5",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
@@ -33,5 +34,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://127.0.0.1:5000"
+  "proxy": "http://127.0.0.1:5000"
 }
