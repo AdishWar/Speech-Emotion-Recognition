@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
+import pickle
 
 # Extract features : mfcc, chroma, mel
 def extract_feature(file, mfcc, chroma, mel):
@@ -56,8 +57,8 @@ if __name__ == '__main__':
     }
 
     # Emotions to observe
-    # observed_emotions = ['neutral','happy','angry','surprised']
-    observed_emotions = ['calm','sad','angry']
+    observed_emotions = ['neutral','happy','angry','sad']
+    # observed_emotions = ['calm','sad','angry']
     # observed_emotions = ['neutral','calm','happy','sad','angry','fearful','disgust','surprised']
 
     # Load the data and extract features for each sound file
@@ -82,8 +83,9 @@ if __name__ == '__main__':
     print("Model test score: ", model.score(x_test, y_test))
 
     # serialising the model object so we dont have to retrain it every time we run jupyter nb
-    dmp = "model.joblib"
-    joblib.dump(model, dmp)
-    print("Model dumped at: ", dmp)
+    joblib.dump(model, 'model.joblib')
+    with open('./model.pkl', 'wb') as file:
+        pickle.dump(model, file)
+    print("Model dumped at: model.joblib")
 
     print("DONE")
