@@ -66,7 +66,7 @@ class Recorder extends React.Component {
 							(this.state.isRecording)?
 							(<i className='play-button-img' className="fa fa-stop"></i>):
 							(<i className='play-button-img' className="fa fa-microphone"></i>)
-						}  
+						}
 					</button>
           <AudioRecorder 
             downloadable = 'true'

@@ -15,6 +15,14 @@ uploads_dir = ".\\uploads"
 # api = Api(app)
 # name_space = api.namespace("prediction", description="Prediction API")
 
+try:
+    print("Reading the model...")
+    # model = joblib.load("model.joblib")
+    with open('model.pkl', 'rb') as file:
+        model = pickle.load(file)
+except:
+    print('error in deserialising model')
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -25,19 +33,10 @@ def index():
 @app.route("/api/data")
 def analyse():
     try:
-        print("Reading the model...")
-        # model = joblib.load("model.joblib")
-        with open('model.pkl', 'rb') as file:
-            model = pickle.load(file)
-    except:
-        e = 'error in de-serialising model'
-        print(e)
-        return jsonify({"prediction":e})
-
-    try:
         print("converting mp3 to wave file...")
         mp3_file = glob.glob(os.path.join(uploads_dir, "*.mp3"))[0]
         ffmpeg = '..\\ffmpeg-20200821-412d63f-win64-static\\bin\\ffmpeg.exe'
+        # ffmpeg = 'ffmpeg'
         os.system(f"{ffmpeg} -i {mp3_file} -acodec pcm_u8 -ar 22050 {os.path.join(uploads_dir, 'abc.wav')}")
         print('Converted to wave')
     except:
@@ -66,15 +65,21 @@ def analyse():
 
 @app.route("/api/data_wav")
 def analyse_wav():
-    print("Reading the model...")
-    model = joblib.load("model.joblib")
+    try:
+        # wav_file = glob.glob("C:\\Users\\admin\\Downloads\\*.wav")[0]
+        wav_file = glob.glob(os.path.join(uploads_dir, "*.wav"))[0]
+        features = extract_feature(wav_file, mfcc=True, chroma = True, mel=True)
+        print("features extracted...")
+    except:
+        e = "error in wav segment"
+        print(e)
+        return jsonify({"prediction": e})
 
-    wav_file = glob.glob("C:\\Users\\admin\\Downloads\\*.wav")[0]
-    # wav_file = glob.glob(os.path.join(uploads_dir, "*.wav"))[0]
-    features = extract_feature(wav_file, mfcc=True, chroma = True, mel=True)
-    print("features extracted...")
-
-    pred = model.predict([features])
-    print("Prediction: ", pred)
-
-    return jsonify({"prediction": pred[0]})
+    try:
+        pred = model.predict([features])
+        print("Prediction: ", pred)
+        os.system("del " + wav_file)
+        os.system("del " + mp3_file)
+        return jsonify({"prediction": pred[0]})
+    except:
+        return jsonify({'prediction':'error in predicting'})

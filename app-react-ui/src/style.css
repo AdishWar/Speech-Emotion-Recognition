@@ -127,6 +127,12 @@ h1.header {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 } */
 
+.select-file-form {
+    width: 50%;
+    margin:auto;
+    margin-top: 10%;
+}
+
 .output-panel {
     height: 100%;
     width: 58%;

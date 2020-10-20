@@ -4,7 +4,7 @@ export default function SelectFilePanel() {
 
     return(
         <div className="select-file-panel">
-            <form action="#" method="POST" encType="multipart/form-data">
+            <form action="#" method="POST" encType="multipart/form-data" className='select-file-form'>
                 {/* <input type="file" class="custom-file-input" /> */}
                 <input type="file" name="file" accept=".mp3" />
                 <input type='submit' id="fetch-button" className="button-ready" value="Submit" />
