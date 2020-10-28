@@ -5,9 +5,6 @@ node_modules/
 /.pnp
 .pnp.js
 ffmpeg-20200821-412d63f-win64-static/
-.ipynb_checkpoints/
-models_in_testing/
-venv
 
 # testing
 /coverage
@@ -15,6 +12,11 @@ venv
 # production
 
 # misc
+.ipynb_checkpoints/
+models
+venv
+*.mp3
+.vscode
 .DS_Store
 .env.local
 .env.development.local

@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.externals import joblib
+import joblib
 import pickle
 
 # Extract features : mfcc, chroma, mel
@@ -84,8 +84,10 @@ if __name__ == '__main__':
 
     # serialising the model object so we dont have to retrain it every time we run jupyter nb
     joblib.dump(model, 'model.joblib')
+    print("Model dumped at: model.joblib")
+
     with open('./model.pkl', 'wb') as file:
         pickle.dump(model, file)
-    print("Model dumped at: model.joblib")
+    print("Model dumped at: model.pkl")
 
     print("DONE")
