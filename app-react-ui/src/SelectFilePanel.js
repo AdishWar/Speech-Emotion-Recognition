@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 export default function SelectFilePanel() {
 
-    const [fetching, setFetching] = useState(false)
+    const [uploading, setUploading] = useState(false)
+    const [uploadedIndicator, setUploadedIndicator] = useState(false)
 
     function handleSubmit(e) {
         e.preventDefault()
-        setFetching(true)
+        setUploading(true)
+        setUploadedIndicator(false)
         const data = new FormData(e.target) 
     
         fetch('/api/send_soundfile', {
@@ -15,11 +17,11 @@ export default function SelectFilePanel() {
         })
         .then(res => {
             console.log(res)
-            setFetching(false)
+            setUploading(false)
+            setUploadedIndicator(true)
+            e.target.reset()
         })
         .catch((e) => console.log("err", e))
-    
-        e.target.reset()
     }
 
     return(
@@ -29,11 +31,16 @@ export default function SelectFilePanel() {
                 <input 
                     type='submit' 
                     id="fetch-button" 
-                    className={(fetching)?('button-fetching'):('button-ready')}
-                    disabled = {fetching}
-                    value= { (fetching) ? ("Uploading...") : ("Upload") }
+                    className={(uploading)?('button-fetching'):('button-ready')}
+                    disabled = {uploading}
+                    value= { (uploading) ? ("Uploading...") : ("Upload") }
                 />
             </form>
+            { 
+                (uploadedIndicator)?
+                (<div className='file-uploaded-indicator'>Uploaded <i className="fa fa-check-circle" aria-hidden="true"></i></div>) :
+                ("")
+            }
         </div>
     );
 }

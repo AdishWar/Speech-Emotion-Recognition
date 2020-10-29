@@ -108,6 +108,44 @@ h1.header {
     margin-top: 10%;
 }
 
+/* .file-uploaded-indicator {
+    width: fit-content;
+    margin: auto;
+    font-size: 20px;
+    color: #2f6b31;
+} */
+
+.file-uploaded-indicator {
+    width: fit-content;
+    margin: auto;
+    font-size: 20px;
+    color: #2f6b31;
+
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 1s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
+
 .output-panel {
     height: 100%;
     width: 58%;

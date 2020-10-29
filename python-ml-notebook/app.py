@@ -10,13 +10,10 @@ from werkzeug import secure_filename
 
 app = Flask(__name__, static_folder="../app-react-ui/build", static_url_path="/")
 # uploads_dir = os.path.join(app.instance_path, "..", 'uploads')
-uploads_dir = ".\\uploads"
+uploads_dir = "./uploads"
 # app.config["UPLOAD_FOLDER"] = uploads_dir
 # api = Api(app)
 # name_space = api.namespace("prediction", description="Prediction API")
-if __name__ == "__main__":
-    app.run(ssl_context='adhoc')
-
 
 
 try:
@@ -29,7 +26,7 @@ except:
     print('error in deserialising model')
 
 ffmpeg = '..\\ffmpeg-20200821-412d63f-win64-static\\bin\\ffmpeg.exe'
-ffmpeg = 'ffmpeg'
+# ffmpeg = 'ffmpeg'
 
 
 # @app.route("/", methods=["GET", "POST"])
