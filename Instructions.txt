@@ -1,0 +1,75 @@
+adishwar1
+
+ssh -i flask-server.pem ubuntu@ec2-3-82-54-13.compute-1.amazonaws.com
+ssh -i adish-zahid-webserver.pem ubuntu@ec2-18-191-58-181.us-east-2.compute.amazonaws.com
+
+gunicorn --certfile certs/cert.pem --keyfile certs/key.pem -b :5001 app:app
+sudo fuser -k 5001/tcp
+
+scp -i flask-server.pem ~/twitter-bot.py ubuntu@ec2-3-214-169-58.compute-1.amazonaws.com:~/
+
+// set execution policy unrestricted for running serve npm command on windows terminal
+Set-ExecutionPolicy -ExecutionPolicy unrestricted
+
+To mount pendrive as /mnt/f
+mount -t drvfs f: /mnt/f
+
++++++++++++++
+
+FOR CREATING APPLICATION:
+	>> do create-react-app
+	>> create api directory and create venv in it
+		>>python -m venv venv
+		>>venv/Scripts/activate
+		>>pip install flask python-dotenv gunicorn
+	>> install flask, python-dotenv in the venv
+	>> write code in api.py in api directory
+	>> create .flaskenv
+	>> add proxy and custom flask runner scripts in package.json
+		error in custom flask runner "start-api"
+	>> exclude stuff from .gitignore
+	>> frontend/backend configuration done
+	>> code something in front and back end
+	DEPLOY PART:
+	>> npm run build
+	>> pip install gunicorn
+	>> gunicorn -b :5000 app:app (or api:app)
+
+FOR AWS SERVER:
+	>> sudo apt-get update
+	>> sudo apt install ffmpeg
+	>> sudo apt install npm
+	>> git clone <repo>
+	>> sudo apt-get install python3-venv
+	>> python3 -m venv venv
+	>> source venv/bin/activate
+	>> pip install -r requirements.txt
+	>> npm install -g serve
+	>> serve build/
+	>> add ip to flags Insecure origins treated as secure
+	>> mkdir uploads
+	>> gunicorn -b :5001 app:app
+	>> sudo fuser -k 5000/tcp  (to kill process using port 5000)
+
+SETTING UP SERVER TO SERVE THE WEBAPP:
+(Miguel Grinberg - https://www.youtube.com/watch?v=qEfduVAQ8FQ&t=1623s)
+
+	SETTING UP REACT HOSTING:
+		>> sudo apt-get install nginx
+		>> cd etc/nginx/
+		>> delete default in sites-enabled
+		>> create new nginx config in sites-available by "sudo nano sites-available/react-flask-app.nginx"
+		when creating symbolic link of nginx config file, use the full path as shown below:
+		>> sudo ln -s /etc/nginx/sites-available/react-flask-app.nginx /etc/nginx/sites-enabled/
+		>> sudo systemctl reload nginx
+
+	SETTING UP FLASK API:
+	(https://blog.miguelgrinberg.com/post/running-a-flask-application-as-a-service-with-systemd)
+		create a systemd service that starts python api via gunicorn on every system restart:
+		>> sudo nano /etc/systemd/system/flask-app.service
+		reload system daemon:
+		>> sudo systemctl daemon-reload
+		start service:
+		>> sudo systemctl start flask-app.service
+		see status of service:
+		>> sudo systemctl status flask-app.service

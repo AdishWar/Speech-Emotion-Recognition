@@ -12,6 +12,7 @@ ffmpeg-20200821-412d63f-win64-static/
 # production
 
 # misc
+speech-emotion-recognition-ravdess-data/
 .ipynb_checkpoints/
 models
 venv
